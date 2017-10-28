@@ -1,0 +1,23 @@
+.background{
+    width: 100%;
+    height: 800px;
+    background: url("../images/background.png");
+    padding-top: -20%;
+}
+body{
+    background: url("../images/image.jpg");
+}
+.navbar-header{
+    display:inline;
+    text-decoration: none;
+    list-style: inherit;
+
+}
+
+ul,li{
+    display: inline-block;
+    text-decoration: blink;
+}
+.opinions{
+    font-family: Satisfy;
+}
