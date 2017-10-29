@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from .models import Doctor
+from .models import Doctor,Patient
 from django import forms
 
 class UserForm(forms.ModelForm):
@@ -8,5 +8,15 @@ class UserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username','password']
+        fields = ['username','password','email']
 
+class DoctorForm(forms.ModelForm):
+    class Meta:
+        model = Doctor
+        fields = ['name','surname','specialization']
+
+class PatientForm(forms.ModelForm):
+
+    class Meta:
+        model = Patient
+        fields = ['name', 'surname','pesel']

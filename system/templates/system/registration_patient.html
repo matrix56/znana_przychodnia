@@ -6,13 +6,13 @@
         <div class="col-sm-12 col-md-6">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h3>Rejestracja lekarz:</h3>
+                    <h3>Rejestracja pacjent:</h3>
                     {% if error_message %}
                         <p><strong>{{ error_message }}</strong></p>
                     {% endif %}
                     <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-                        {% include 'system/form_doctor.html' %}
+                        {% include 'system/form_patient.html' %}
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-success">Potwierdź</button>
@@ -26,7 +26,7 @@
   <div class="col-sm-12 col-md-5">
       <div class="panel panel-default">
           <div class="panel-body">
-              <h3>Co to jest Znana przychodnia?</h3>
+              <h3>Czym jest Znana przychodnia?</h3>
               <p>Jest to serwis umożliwiający rejestrację pacjentów do wybranych przez siebie lekarzy, którzy są użytkownikami naszego serwisu.</p>
               <h3>Jak się zarejestrować?</h3>
               <p>Jeżeli jesteś pacjentem wybierz rejestrację dla pacjenta, jeżeli lekarzem wybierz dla lekarza.</p>

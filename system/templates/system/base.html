@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+<!--szablon bazowy -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -40,8 +41,8 @@
                 <li>
                     {% if user.is_active %}
 
-                        <a href="{%  url 'system:homepage' %}">
-                            <span class="glyphicon glyphicon-off"  aria-hidden="true" ></span>&nbsp; Wyloguj się
+                        <a href="{%  url 'system:wylogowanie' %}">
+                            <span class="glyphicon glyphicon-off"  aria-hidden="true"></span> Wyloguj sie
                         </a>
                         {% else %}
                         <a href="{% url 'system:logowanie' %}">

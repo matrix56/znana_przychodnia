@@ -13,19 +13,9 @@ class Doctor(models.Model):
     def __str__(self):
         return self.name + ' ' +self.surname + ' ' + self.specialization
 
-class Opinion(models.Model):
-    poll = models.ForeignKey(Doctor)
-    text = models.TextField()
-    voice = models.IntegerField()
-
-
-class Describe(models.Model):
-    text = models.TextField()
-
-    def __str__(self):
-        return self.text
 
 class Patient(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     surname = models.CharField(max_length=100)
     pesel = models.IntegerField()
