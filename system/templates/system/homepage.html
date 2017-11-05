@@ -2,9 +2,38 @@
 {% block body %}
     <section class="background">
     </section>
-    <section class="opinions">
-        <h2> Najnowsze Opinie</h2>
-    <h1>Dupsko</h1>
-    </section>
+
+    <div class="container-fluid">
+        <div class="row1">
+            <div class="col-sm-12 col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3>Najnowsze opinie:</h3>
+                        {% for opinion in opinions %}
+                            <div class="post">
+                                <p>published: {{ opinion.published_date }}</p>
+                                <h1><a href="#">{{ opinion.title }}</a></h1>
+                                <p>{{ opinion.text|linebreaksbr }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="col-sm-12 col-md-5">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Zadane pytania:</h3>
+                {% for question in questions %}
+                            <div class="post">
+                                <p>published: {{ question.published_date }}</p>
+                                <h1><a href="#">{{ question.title }}</a></h1>
+                                <p>{{ question.text|linebreaksbr }}</p>
+                            </div>
+                        {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

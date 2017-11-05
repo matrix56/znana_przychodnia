@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login, logout
-from .models import Doctor
-from .forms import UserForm, DoctorForm,PatientForm
+from .models import Doctor,Opinion,Patient,Question
+from .forms import UserForm, DoctorForm,PatientForm,CalendarForm,OpinionForm,QuestionForm
 from django.db import transaction
+from django.utils import timezone
 # Create your views here.
 
 
@@ -27,6 +28,51 @@ def logout_user(request):
     }
     return render(request, 'system/logout.html', context)
 
+def opinion_detail(request, pk):
+    opinions = get_object_or_404(Opinion, pk=pk)
+    return render( 'system:opis_opinii', {'opinions': opinions})
+
+def add_opinion(request):
+    if request.method == "POST":
+        form = OpinionForm(request.POST or None)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user.patient
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('system:opis_opinii', pk=post.pk)
+    else:
+        form = OpinionForm()
+    return render(request, 'system/add_opinion.html', {'form': form})
+
+def question_detail(request):
+    questions = get_object_or_404(Question, pk=pk)
+    return render( 'system:opis_pytania', {'questions': questions})
+
+def add_question(request):
+    if request.method == "POST":
+        form = QuestionForm(request.POST or None)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user.patient
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('system:opis_pytania', pk=post.pk)
+    else:
+        form = QuestionForm()
+    return render(request, 'system/add_question.html', {'form': form})
+
+def opinion_list(request):
+    opinions = Opinion.objects.all()
+    return render(request,"system/homepage.html",{'opinions':opinions})
+
+def question_list(request):
+    questions = Question.objects.all()
+    return render(request,"system/homepage.html",{'questions':questions})
+
+def patient_info(request):
+    return render(request,"system/patient.html")
+
 def login_user(request):
     if request.method == "POST":
         username = request.POST['username']
@@ -39,7 +85,7 @@ def login_user(request):
             else:
                 return render(request, 'system/login.html', {'error_message': 'Konto zablokowane'})
         else:
-            return render(request, 'system/login.html', {'error_message': 'Błędne logowanie'})
+            return render(request, 'system/login.html', {'error_message': 'Konto nie istnieje'})
 
     return render(request, 'system/login.html')
 
@@ -60,7 +106,7 @@ def register_doctor(request):
             login(request,user)
             return render(request,'system/homepage.html')
         else:
-            return render(request, 'system/registration_form.html', {'error_message': 'Konto zablokowane'})
+            return render(request, 'system/registration_form.html', {'error_message': 'Błedne logowanie'})
     else:
         user_form = UserForm()
         doctor_form = DoctorForm()
@@ -71,7 +117,6 @@ def register_doctor(request):
 
 @transaction.atomic
 def register_patient(request):
-    registered = False
     if request.method == 'POST':
         user_form = UserForm(request.POST or None)
         patient_form = PatientForm(request.POST or None)
@@ -83,13 +128,29 @@ def register_patient(request):
             profile = patient_form.save(commit=False)
             profile.user = user
             profile.save()
-            registered = True
+            login(request,user)
+            return render(request,'system/homepage.html')
         else:
-            return render(request, 'system/registration_patient.html', {'error_message': 'Konto zablokowane'})
+            return render(request, 'system/registration_patient.html', {'error_message': 'Niepoprawne dane'})
     else:
         user_form = UserForm()
         patient_form = PatientForm()
 
     return render(request,
             'system/registration_patient.html',
-            {'user_form': user_form, 'patient_form': patient_form, 'registered': registered} )
+            {'user_form': user_form, 'patient_form': patient_form} )
+
+@transaction.atomic
+def add_calendar(request):
+    if request.method == "POST":
+        calendar_form = CalendarForm(request.POST or None)
+
+        if calendar_form.is_valid():
+            calendar_form.save(commit= False)
+        else:
+            return render(request,'system/calendar_doctor.html',{'error_message' : 'Niepoprawny format danych'})
+
+    else:
+        calendar_form = CalendarForm()
+
+        return render(request, 'system/calendar_doctor.html',{'calendar_form':calendar_form})

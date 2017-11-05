@@ -1,0 +1,13 @@
+{% extends 'system/base.html' %}
+
+{% block body %}
+    <div>
+    {% if user.is_authenticated %}
+        <h1>Nowa opinia:</h1>
+        <form method="POST" class="post-form">{% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save btn btn-default">Zapisz</button>
+        </form>
+    {% endif %}
+    </div>
+{% endblock %}

@@ -26,10 +26,16 @@
         </div>
 
         <!-- Items -->
-        <div class="collapse navbar-collapse" id="topNavBar">
+        <div class="collapse navbar-collapse" data-toogle="#topNavBar">
             <ul class="nav navbar-nav">
                 <li> <a href="{% url 'system:doctor_list' %}"><span class="glyphicon" aria-hidden="true"></span>&nbsp; Nasi lekarze</a></li>
-                <li> <a href="#"><span class="glyphicon" aria-hidden="true"></span>&nbsp; Dla pacjentów</a></li>
+                {% if not request.user.patient and user.is_active %}
+                    {% csrf_token %}
+                    <li> <a href="{% url 'system:dodaj_terminarz' %}"><span class="glyphicon" aria-hidden="true"></span>&nbsp; Ustaw terminy</a></li>
+                {% endif %}
+                {% if request.user.patient or not user.is_active %}
+                    <li> <a href={% url 'system:pacjent_info' %}><span class="glyphicon" aria-hidden="true"></span>&nbsp; Dla pacjentów</a></li>
+                {% endif %}
             </ul>
             <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'system:homepage' %}">
                 <div class="form-group">
