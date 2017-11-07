@@ -18,7 +18,6 @@ urlpatterns = [
 
     url(r'^doctor_list/$', views.doctor_list, name='doctor_list'),
 
-    url(r'^calendar/$', views.add_calendar, name='dodaj_terminarz'),
 
     url(r'^opinion/$', views.add_opinion, name='dodaj_opinie'),
 
