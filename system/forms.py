@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from pip._vendor.ipaddress import AddressValueError
 
-from .models import Doctor,Patient,Opinion,Question
+from .models import Doctor,Patient,Opinion,Pytanie
 from schedule.models import Event,Calendar
 from django import forms
 
@@ -34,20 +34,22 @@ class PatientForm(forms.ModelForm):
         model = Patient
         fields = ['name', 'surname', 'phone_number']
 
-class CalendarForm(forms.ModelForm):
+class EventForm(forms.ModelForm):
 
     class Meta:
         model = Event
         fields = ['title','description','start','creator']
 
+
 class OpinionForm(forms.ModelForm):
 
     class Meta:
         model = Opinion
+        fields = ['lekarz','opis']
+
+class PytanieForm(forms.ModelForm):
+
+    class Meta:
+        model = Pytanie
         fields = ['title','text']
 
-class QuestionForm(forms.ModelForm):
-    title = forms.CharField(widget=Doctor)
-    class Meta:
-        model = Question
-        fields = ['title','text']

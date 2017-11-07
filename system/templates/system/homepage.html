@@ -12,8 +12,8 @@
                         {% for opinion in opinions %}
                             <div class="post">
                                 <p>published: {{ opinion.published_date }}</p>
-                                <h1><a href="#">{{ opinion.title }}</a></h1>
-                                <p>{{ opinion.text|linebreaksbr }}</p>
+                                <h1><a href="{% url 'system:doctor_list'  %}">{{ opinion.lekarz }}</a></h1>
+                                <p>{{ opinion.opis|linebreaksbr }}</p>
                             </div>
                         {% endfor %}
                     </div>
@@ -25,12 +25,12 @@
             <div class="panel-body">
                 <h3>Zadane pytania:</h3>
                 {% for question in questions %}
-                            <div class="post">
-                                <p>published: {{ question.published_date }}</p>
-                                <h1><a href="#">{{ question.title }}</a></h1>
-                                <p>{{ question.text|linebreaksbr }}</p>
-                            </div>
-                        {% endfor %}
+                    <div class="post">
+                        <p>published: {{ question.published_date }}</p>
+                        <h1>{{ question.title }}</h1>
+                        <p>{{ question.text|linebreaksbr }}</p>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>

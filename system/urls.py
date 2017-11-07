@@ -6,6 +6,8 @@ app_name = 'system'
 urlpatterns = [
     url(r'^$', views.opinion_list, name='homepage'),
 
+    url(r'^$', views.question_list, name='homepage'),
+
     url(r'^register_doctor/$', views.register_doctor, name='rejestracja_lekarz'),
 
     url(r'^register_patient/$', views.register_patient, name='rejestracja_pacjent'),

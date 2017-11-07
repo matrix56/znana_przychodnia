@@ -23,10 +23,18 @@
                         <strong>Wygląda na to że nie masz jeszcze konta <a href="{% url 'system:rejestracja_pacjent'  %}">kliknij tutaj</a> aby się zarejestrować </strong>
                    </div>
               {% endif %}
-                  <a href="{% url 'system:dodaj_opinie' %}">
+                {% if request.user.patient %}
+                        <a href="{% url 'system:dodaj_opinie' %}">
+                  {% else %}
+                        <a href="{% url 'system:pacjent_info' %}">
+                {% endif %}
                     <button type="button" class="btn btn-primary">Wystaw opinie</button>
-              </a>
-              <a href="{% url 'system:zadaj_pytanie' %}">
+                </a>
+              {% if request.user.patient %}
+                    <a href="{% url 'system:zadaj_pytanie' %}">
+              {% else %}
+                        <a href="{% url 'system:pacjent_info' %}">
+              {% endif %}
                     <button type="button" class="btn btn-secondary">Zapytaj lekarza</button>
               </a>
               <a href="{% url 'system:doctor_list' %}">

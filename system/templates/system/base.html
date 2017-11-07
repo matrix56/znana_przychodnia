@@ -31,7 +31,7 @@
                 <li> <a href="{% url 'system:doctor_list' %}"><span class="glyphicon" aria-hidden="true"></span>&nbsp; Nasi lekarze</a></li>
                 {% if not request.user.patient and user.is_active %}
                     {% csrf_token %}
-                    <li> <a href="{% url 'system:dodaj_terminarz' %}"><span class="glyphicon" aria-hidden="true"></span>&nbsp; Ustaw terminy</a></li>
+                    <li> <a href="{% url 'system:dodaj_terminarz' %}"><span class="glyphicon" aria-hidden="true"></span>&nbsp; Ustaw terminarz</a></li>
                 {% endif %}
                 {% if request.user.patient or not user.is_active %}
                     <li> <a href={% url 'system:pacjent_info' %}><span class="glyphicon" aria-hidden="true"></span>&nbsp; Dla pacjentów</a></li>

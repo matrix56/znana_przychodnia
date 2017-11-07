@@ -1,0 +1,13 @@
+{% extends 'system/base.html' %}
+
+{% block body %}
+    <div class="post">
+        {% if question.published_date %}
+            <div class="date">
+                {{ questions.published_date }}
+            </div>
+        {% endif %}
+        <h1>{{ question.title }}</h1>
+        <p>{{ question.text|linebreaksbr }}</p>
+    </div>
+{% endblock %}
