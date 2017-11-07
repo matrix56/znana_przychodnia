@@ -25,7 +25,7 @@ SECRET_KEY = 'g3+o70c_tfa2_$aqga$wxf=y*bv2735)vl^&_8s$&1(@v(94y@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sobcio321.pythonanywhere.com']
 
 
 # Application definition
