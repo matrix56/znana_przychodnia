@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'system',
-    'schedule'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

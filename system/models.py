@@ -2,7 +2,6 @@ from django.contrib.contenttypes.fields import GenericRelation
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
-from schedule.models import Event,Calendar
 
 
 
