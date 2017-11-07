@@ -43,9 +43,10 @@
         <entry file="file://$PROJECT_DIR$/system/templates/system/base.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="252">
-              <caret line="33" column="43" lean-forward="false" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
+              <caret line="33" column="35" lean-forward="false" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
               <folding>
-                <marker date="1510053243073" expanded="true" signature="2711:2885" ph="{% if user.is_active ... %}" />
+                <element signature="e#1588#1594#0#HTML" expanded="true" />
+                <marker date="1510053353116" expanded="true" signature="2699:2873" ph="{% if user.is_active ... %}" />
               </folding>
             </state>
           </provider>
@@ -529,7 +530,8 @@
         <state relative-caret-position="561">
           <caret line="33" column="14" lean-forward="true" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
           <folding>
-            <marker date="1510053243073" expanded="true" signature="2711:2885" ph="{% if user.is_active ... %}" />
+            <element signature="e#1588#1594#0#HTML" expanded="true" />
+            <marker date="1510053353116" expanded="true" signature="2699:2873" ph="{% if user.is_active ... %}" />
           </folding>
         </state>
       </provider>
@@ -880,9 +882,10 @@
     <entry file="file://$PROJECT_DIR$/system/templates/system/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
-          <caret line="33" column="43" lean-forward="false" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
+          <caret line="33" column="35" lean-forward="false" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
           <folding>
-            <marker date="1510053243073" expanded="true" signature="2711:2885" ph="{% if user.is_active ... %}" />
+            <element signature="e#1588#1594#0#HTML" expanded="true" />
+            <marker date="1510053353116" expanded="true" signature="2699:2873" ph="{% if user.is_active ... %}" />
           </folding>
         </state>
       </provider>
