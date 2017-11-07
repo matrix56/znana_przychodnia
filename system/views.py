@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login, logout
 from .models import Doctor,Opinion,Patient,Pytanie
-from .forms import UserForm, DoctorForm,PatientForm,OpinionForm,PytanieForm,EventForm
+from .forms import UserForm, DoctorForm,PatientForm,OpinionForm,PytanieForm
 from django.db import transaction
 from django.utils import timezone
 # Create your views here.
@@ -135,7 +135,7 @@ def register_patient(request):
     return render(request,
             'system/registration_patient.html',
             {'user_form': user_form, 'patient_form': patient_form} )
-
+"""
 @transaction.atomic
 def add_calendar(request):
     if request.method == "POST":
@@ -150,3 +150,4 @@ def add_calendar(request):
         calendar_form = EventForm()
 
         return render(request, 'system/calendar_doctor.html',{'calendar_form':calendar_form})
+"""
