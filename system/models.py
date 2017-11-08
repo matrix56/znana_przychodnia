@@ -26,7 +26,6 @@ class Patient(models.Model):
         return self.name + ' ' + self.surname
 
 class Pytanie(models.Model):
-    autor = models.ForeignKey(Patient,on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     text = models.TextField()
     published_date = models.DateTimeField(blank=True, null=True)
@@ -54,4 +53,8 @@ class Opinion(models.Model):
 
     def __str__(self):
         return self.Doctor.name + Doctor.surname
+
+class Terms(models.Model):
+    id = models.OneToOneField(Doctor, primary_key=True, on_delete=models.CASCADE)
+    data = models.DateField(blank=True,null = True)
 

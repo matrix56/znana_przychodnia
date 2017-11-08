@@ -22,10 +22,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'g3+o70c_tfa2_$aqga$wxf=y*bv2735)vl^&_8s$&1(@v(94y@'
 
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sobcio321.pythonanywhere.com']
+ALLOWED_HOSTS = ['localhost',
+    'sobcio321.pythonanywhere.com']
 
 
 # Application definition
@@ -38,7 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'system',
+    'captcha',
 ]
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -122,7 +128,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'public', 'static')
 
-STAR_RATINGS_ANONYMOUS = True
+NOCAPTCHA = True
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR)
 MEDIA_URL = 'system/static/images/'
+
+RECAPTCHA_PUBLIC_KEY = '6LeI4DcUAAAAAF3aEGnCs3erfF6HZYZRq9qkcgLd'
+RECAPTCHA_PRIVATE_KEY = '6LeI4DcUAAAAAOIjHyeVtdrupnNISL-CIXcGivWm'

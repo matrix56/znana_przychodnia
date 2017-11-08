@@ -1,25 +1,28 @@
 {% extends 'system/base.html' %}
-
 {% block body %}
-    <div class="container-fluid">
+     <div class="container-fluid">
         <div class="row1">
             <div class="col-sm-12 col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <h3>Zadaj pytanie:</h3>
+                        <h3>Ustaw terminy:</h3>
                         {% if error_message %}
                             <p><strong>{{ error_message }}</strong></p>
                         {% endif %}
                         <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
-                            <form method="POST" class="post-form">{% csrf_token %}
-                                 {{ form.as_p }}
-                                <button type="submit" class="save btn btn-default">Zapisz</button>
-                            </form>
+                            {% include 'system/form_add_termi.html' %}
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-success">Potwierdź</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
      </div>
+
+
 {% endblock %}

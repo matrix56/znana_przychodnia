@@ -1,13 +1,25 @@
 {% extends 'system/base.html' %}
 
 {% block body %}
-    <div>
-    {% if user.is_authenticated %}
-        <h1>Nowa opinia:</h1>
-        <form method="POST" class="post-form">{% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="save btn btn-default">Zapisz</button>
-        </form>
-    {% endif %}
-    </div>
+     <div class="container-fluid">
+        <div class="row1">
+            <div class="col-sm-12 col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3>Ustaw terminy:</h3>
+                        {% if error_message %}
+                            <p><strong>{{ error_message }}</strong></p>
+                        {% endif %}
+                        <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <form method="POST" class="post-form">{% csrf_token %}
+                                 {{ form.as_p }}
+                                <button type="submit" class="save btn btn-default">Zapisz</button>
+                            </form>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
 {% endblock %}

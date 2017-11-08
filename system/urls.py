@@ -18,6 +18,7 @@ urlpatterns = [
 
     url(r'^doctor_list/$', views.doctor_list, name='doctor_list'),
 
+    url(r'^add_term/$', views.add_term, name='dodaj_termin'),
 
     url(r'^opinion/$', views.add_opinion, name='dodaj_opinie'),
 

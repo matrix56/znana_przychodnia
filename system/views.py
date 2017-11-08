@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login, logout
 from .models import Doctor,Opinion,Patient,Pytanie
-from .forms import UserForm, DoctorForm,PatientForm,OpinionForm,PytanieForm
+from .forms import UserForm, DoctorForm,PatientForm,OpinionForm,PytanieForm,TermForm
 from django.db import transaction
 from django.utils import timezone
 # Create your views here.
@@ -51,11 +51,11 @@ def add_question(request):
     if request.method == "POST":
         form = PytanieForm(request.POST or None)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.autor = request.user.patient
-            post.published_date = timezone.now()
-            post.save()
-            return redirect('system:opis_pytania', pk=post.pk)
+            pytanie = form.save(commit=False)
+            pytanie.author = request.user.patient
+            pytanie.published_date = timezone.now()
+            pytanie.save()
+            return redirect('system:opis_pytania', pk=pytanie.pk)
     else:
         form = PytanieForm()
     return render(request, 'system/add_question.html', {'form': form})
@@ -65,7 +65,7 @@ def opinion_list(request):
     return render(request,"system/homepage.html",{'opinions':opinions})
 
 def question_list(request):
-    questions = Pytanie.objects.all()
+    questions = Pytanie.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     return render(request,"system/homepage.html",{'questions':questions})
 
 def patient_info(request):
@@ -135,6 +135,19 @@ def register_patient(request):
     return render(request,
             'system/registration_patient.html',
             {'user_form': user_form, 'patient_form': patient_form} )
+
+def add_term(request):
+    if request.method == "POST":
+        term_form = TermForm(request.POST or None)
+
+        if term_form.is_valid():
+            term_form.save(commit=False)
+        else:
+            return render(request,'system/add_term.html',{'error_message': 'Niepoprawny format danych'})
+    else:
+        term_form = TermForm()
+
+        return render(request, 'system/add_term.html',{'term_form': term_form})
 """
 @transaction.atomic
 def add_calendar(request):

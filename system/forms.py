@@ -1,13 +1,20 @@
 from django.contrib.auth.models import User
 from pip._vendor.ipaddress import AddressValueError
-
-from .models import Doctor,Patient,Opinion,Pytanie
+from django.forms import extras
+from .models import Doctor,Patient,Opinion,Pytanie,Terms
 from django import forms
+from django.utils import timezone
+from django import forms
+from captcha.fields import ReCaptchaField
+
+
+
 
 class UserForm(forms.ModelForm):
-
+    captcha = ReCaptchaField()
     password = forms.CharField(widget=forms.PasswordInput,min_length=8)
     confirm_password = forms.CharField(widget=forms.PasswordInput)
+
     class Meta:
         model = User
         fields = ['username','email','password']
@@ -23,12 +30,14 @@ class UserForm(forms.ModelForm):
             )
 
 class DoctorForm(forms.ModelForm):
+
     class Meta:
         model = Doctor
         fields = ['name','surname','specialization']
 
 
 class PatientForm(forms.ModelForm):
+
     class Meta:
         model = Patient
         fields = ['name', 'surname', 'phone_number']
@@ -47,3 +56,9 @@ class PytanieForm(forms.ModelForm):
         model = Pytanie
         fields = ['title','text']
 
+class TermForm(forms.ModelForm):
+    data = forms.DateField(widget=extras.SelectDateWidget)
+    czas = forms.TimeField(initial=timezone.now())
+    class Meta:
+        model = Terms
+        fields = ['data','czas']
